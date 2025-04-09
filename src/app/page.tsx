@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ProfessionalSignupForm from "./components/ProfessionalSignupForm";
+import ProfessionalSignupFormWrapper from "./components/ProfessionalSignupFormWrapper";
 
 export default function Home() {
   return (
@@ -40,7 +40,7 @@ export default function Home() {
 
       <section className="py-32 px-6 bg-[#ADDFDF] text-center">
         <h2 className="text-3xl font-semibold mb-4">
-          Você cuida das casas. A gente cuida de trazer os clientes até você.
+          Você cuida das casas. A gente cuida para trazer os clientes até você.
         </h2>
         <p className="max-w-2xl mx-auto text-lg">
           Já imaginou receber pedidos de limpeza direto no seu celular, com
@@ -113,25 +113,28 @@ export default function Home() {
           você. Vamos te dar suporte, visibilidade e garantir que seu trabalho
           seja valorizado.
         </p>
-        <ProfessionalSignupForm />
       </section>
 
-      <section className="py-32 px-6 bg-[#ADDFDF] text-center">
-        <h2 className="text-3xl font-bold mb-4">
-          As primeiras profissionais da plataforma terão destaque especial
-        </h2>
-        <p className="mb-6 text-lg max-w-xl mx-auto">
-          Estamos selecionando as primeiras parceiras agora mesmo. Entre para a
-          lista de interessadas e seja uma das primeiras a testar — sem custo,
-          com total apoio e chance de conquistar clientes fixos.
-        </p>
-        <a
-          id="cadastro"
-          href="#"
-          className="bg-white text-blue-700 px-6 py-3 rounded-full text-lg font-semibold"
-        >
-          Quero fazer parte dessa oportunidade 🙋‍♀️
-        </a>
+      <section className="bg-[#ADDFDF] py-20 px-6 md:px-12" id="form">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+            As 100 primeiras profissionais terão destaque especial
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 mb-6">
+            Estamos selecionando agora mesmo as primeiras parceiras da plataforma.<br/>
+            Entre para a lista de interessadas e garanta:
+          </p>
+          <ul className="text-left max-w-md mx-auto text-gray-700 mb-6 list-disc list-inside">
+            <li><strong>6 meses sem taxas</strong></li>
+            <li><strong>Destaque nos resultados de busca</strong></li>
+            <li><strong>Total apoio da nossa equipe</strong></li>
+          </ul>
+          <p className="text-lg md:text-xl text-gray-600 mb-6">
+            Uma chance única de conquistar clientes fixos e fazer parte de algo grande desde o início. <br />
+            <strong className="text-red-500">Vagas limitadas: só 100 profissionais!</strong>
+          </p>
+          <ProfessionalSignupFormWrapper />
+        </div>
       </section>
 
       <footer className="bg-gray-800 text-white text-center py-6">
