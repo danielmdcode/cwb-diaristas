@@ -78,7 +78,7 @@ export default function Home() {
           Por que vale a pena ser uma das primeiras profissionais da nossa
           plataforma?
         </h2>
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 text-left">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 text-left items-center">
           <div>
             <p className="mb-4">
               💰 <strong>Pagamento em até 2 dias</strong> após a confirmação do
@@ -100,6 +100,14 @@ export default function Home() {
               gente
             </p>
           </div>
+          <div>
+            <Image
+              src={"/cwb_diaristas_1.png"}
+              alt="Logo"
+              width={600}
+              height={600}
+            />
+          </div>
         </div>
       </section>
 
@@ -115,7 +123,7 @@ export default function Home() {
         </p>
       </section>
 
-      <section className="bg-[#ADDFDF] py-20 px-6 md:px-12" id="form">
+      <section className="bg-[#ADDFDF] py-20 px-6 md:px-12" id="cadastro">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
             As 100 primeiras profissionais terão destaque especial
