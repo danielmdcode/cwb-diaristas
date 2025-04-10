@@ -16,7 +16,7 @@ export default function Home() {
         <div className="z-10 flex flex-col items-center justify-center relative">
           <Image
             src={"/cwb_diaristas_logo.svg"}
-            alt="Logo"
+            alt="CWB Diaristas"
             width={200}
             height={242}
           />
@@ -103,7 +103,7 @@ export default function Home() {
           <div>
             <Image
               src={"/cwb_diaristas_1.png"}
-              alt="Logo"
+              alt="Diaristas"
               width={600}
               height={600}
             />
