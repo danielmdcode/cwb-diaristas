@@ -1,6 +1,21 @@
 import Image from "next/image";
 import ProfessionalSignupFormWrapper from "./components/ProfessionalSignupFormWrapper";
 
+export const metadata = {
+  openGraph: {
+    title: 'CWB Diaristas',
+    description: 'Comece a ganhar mais fazendo o que você já faz de melhor. Conectamos profissionais de limpeza a clientes em Curitiba.',
+    images: [
+      {
+        url: '/background.png',
+        width: 1200,
+        height: 630,
+        alt: 'CWB Diaristas',
+      },
+    ],
+  },
+};
+
 export default function Home() {
   return (
     <>
