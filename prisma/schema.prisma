@@ -1,0 +1,123 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  PROFESSIONAL
+  USER
+  ADMINISTRATOR
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  BANNED
+  INACTIVE
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  nome      String?
+  role      Role     @default(USER)
+  status    UserStatus @default(ACTIVE)
+  userInfo  UserInfo?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ServiceZones {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  neighborhood  String 
+  city          String
+  state         String
+  professionals UserServiceZones[]  // Relation through join model
+}
+
+model UserInfo {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String   @unique @db.ObjectId
+  user              User     @relation(fields: [userId], references: [id])
+  avatar            String?
+  addresses         Address[]
+  accounts          Account[]
+  phoneNumber       String?
+  documents         Document[]
+  rating            Float    @default(0)
+  bio               String?
+  languages         String[]
+  skills            String[]
+  serviceZones      UserServiceZones[]  // Relation through join model
+  availabilitySchedule Schedule[]
+  verificationStatus VerificationStatus @default(PENDING)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Address {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  street      String
+  number      String
+  complement  String?
+  neighborhood String
+  city        String
+  state       String
+  zipCode     String
+  userInfoId  String   @db.ObjectId
+  userInfo    UserInfo @relation(fields: [userInfoId], references: [id])
+}
+
+model Account {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  bank        String
+  agency      String
+  account     String
+  accountType String
+  userInfoId  String   @db.ObjectId
+  userInfo    UserInfo @relation(fields: [userInfoId], references: [id])
+}
+
+model Document {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  type        String
+  number      String
+  url         String
+  userInfoId  String   @db.ObjectId
+  userInfo    UserInfo @relation(fields: [userInfoId], references: [id])
+}
+
+model Schedule {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  dayOfWeek   String
+  startTime   String
+  endTime     String
+  userInfoId  String   @db.ObjectId
+  userInfo    UserInfo @relation(fields: [userInfoId], references: [id])
+}
+
+model UserServiceZones {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userInfoId    String   @db.ObjectId
+  serviceZoneId String   @db.ObjectId
+  userInfo      UserInfo @relation(fields: [userInfoId], references: [id])
+  serviceZone   ServiceZones @relation(fields: [serviceZoneId], references: [id])
+
+  @@unique([userInfoId, serviceZoneId])
+}
+
+enum VerificationStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
