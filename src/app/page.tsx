@@ -154,7 +154,7 @@ export default function Home() {
           </ul>
           <p className="text-lg md:text-xl text-gray-600 mb-6">
             Uma chance única de conquistar clientes fixos e fazer parte de algo grande desde o início. <br />
-            <strong className="text-red-500">Vagas limitadas: faltam 98 profissionais!</strong>
+            <strong className="text-red-500">Vagas limitadas: faltam 94 profissionais!</strong>
           </p>
           <ProfessionalSignupFormWrapper />
         </div>
