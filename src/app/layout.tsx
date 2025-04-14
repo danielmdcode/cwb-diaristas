@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster"
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -32,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -41,7 +42,7 @@ export default function RootLayout({
         <meta name="author" content="CWB Diaristas" />
         <meta name="theme-color" content="#ADDFDF" />
         <title>CWB Diaristas - Profissionais de Limpeza em Curitiba</title>
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" /> 
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
@@ -106,14 +107,14 @@ export default function RootLayout({
             })
           }}
         />
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-8HX4HRGYXF" strategy="afterInteractive" />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-8HX4HRGYXF', {
+            gtag('config', 'G-XXXXXXXXXX', {
               page_path: window.location.pathname,
               send_page_view: true,
               site_speed_sample_rate: 100
@@ -176,6 +177,7 @@ export default function RootLayout({
         className={`${openSans.variable} antialiased bg-gray-50 text-gray-800`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );

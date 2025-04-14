@@ -4,6 +4,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { Button } from "@/components/ui/button"
 import { Pencil } from "lucide-react"
 import Link from "next/link"
+import { ENDPOINTS } from "@/config/routes"
 
 interface UserInfo {
     id: string;
@@ -55,7 +56,7 @@ export const columns: ColumnDef<User>[] = [
         id: "actions",
         cell: ({ row }) => {
             return (
-                <Link href={`/admin/users/${row.original.id}/edit`}>
+                <Link href={ENDPOINTS.USERS.EDIT(row.original.id)}>
                     <Button variant="ghost" size="sm">
                         <Pencil className="h-4 w-4" />
                     </Button>

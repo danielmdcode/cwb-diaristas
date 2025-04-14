@@ -1,3 +1,7 @@
 export const ENDPOINTS = {
-    ADD_USER: "/admin/usuarios/novo",
+    USERS: {
+        LIST: "/admin/usuarios",
+        ADD: "/admin/usuarios/novo",
+        EDIT: (id: string) => `/admin/usuarios/${id}/editar`,
+    },
 }

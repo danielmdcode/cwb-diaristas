@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -22,7 +22,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-// import { toast } from "sonner";
+import { ENDPOINTS } from "@/config/routes";
+import { useToastStore } from "@/stores/use-toast-store";
 
 const formSchema = z.object({
     nome: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
@@ -34,6 +35,7 @@ const formSchema = z.object({
 export function NewUserForm() {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
+    const addToast = useToastStore((state) => state.addToast);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -44,6 +46,14 @@ export function NewUserForm() {
             status: "ACTIVE",
         },
     });
+
+    useEffect(() => {
+        addToast({
+            title: "Sucesso",
+            description: "Usuário criado com sucesso!",
+            type: "default",
+        });
+    }, []);
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
@@ -60,11 +70,19 @@ export function NewUserForm() {
                 throw new Error("Erro ao criar usuário");
             }
 
-            //   toast.success("Usuário criado com sucesso!");
-            router.push("/admin/users");
+            addToast({
+                title: "Sucesso",
+                description: "Usuário criado com sucesso!",
+                type: "default",
+            });
+            router.push(ENDPOINTS.USERS.LIST);
             router.refresh();
-        } catch (error: any) {
-            //   toast.error("Erro ao criar usuário");
+        } catch (error) {
+            addToast({
+                title: "Erro",
+                description: "Erro ao criar usuário",
+                type: "destructive",
+            });
             console.error(error);
         } finally {
             setIsLoading(false);
