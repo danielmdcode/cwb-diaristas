@@ -47,14 +47,6 @@ export function NewUserForm() {
         },
     });
 
-    useEffect(() => {
-        addToast({
-            title: "Sucesso",
-            description: "Usuário criado com sucesso!",
-            type: "default",
-        });
-    }, []);
-
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
             setIsLoading(true);

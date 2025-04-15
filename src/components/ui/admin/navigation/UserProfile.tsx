@@ -1,0 +1,73 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+// import { RiMore2Fill } from "@remixicon/react";
+
+import { DropdownUserProfile } from "./DropdownUserProfile";
+import { cn } from "@/lib/utils";
+import { focusRing } from "@/utils/focusRing";
+// import { useUser } from "@/providers/UserProvider";
+import { useEffect, useState } from "react";
+
+export const UserProfileDesktop = () => {
+  // const { user } = useUser();
+
+  const [letters, setLetters] = useState("DM");
+  const [name, setName] = useState("Daniel Morsoleto");
+
+  // useEffect(() => {
+  //   if (user.email) {
+  //     const { email } = user;
+  //     setLetters(email.substring(0, 2));
+  //     setName(email.substring(0, email.indexOf("@")));
+  //   }
+  // }, [user]);
+
+  return (
+    <DropdownUserProfile>
+      <Button
+        aria-label="User settings"
+        variant="ghost"
+        className={cn(
+          focusRing,
+          "group flex w-full items-center justify-between rounded-md p-2 text-sm font-medium text-gray-900 dark:text-gray-200 hover:bg-gray-100 data-[state=open]:bg-gray-100 data-[state=open]:bg-gray-400/10 hover:dark:bg-gray-400/10"
+        )}
+      >
+        <span className="flex items-center gap-3">
+          <span
+            className="flex size-8 shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white text-xs text-gray-700 dark:border-gray-200 dark:bg-gray-950 dark:text-gray-100 uppercase"
+            aria-hidden="true"
+          >
+            {letters}
+          </span>
+          <span className="capitalize">{name}</span>
+        </span>
+        {/* <RiMore2Fill
+          className="size-4 shrink-0 text-gray-500 group-hover:text-gray-700 group-hover:dark:text-gray-400"
+          aria-hidden="true"
+        /> */}
+      </Button>
+    </DropdownUserProfile>
+  );
+};
+
+export const UserProfileMobile = () => {
+  return (
+    <DropdownUserProfile align="end">
+      <Button
+        aria-label="User settings"
+        variant="ghost"
+        className={cn(
+          "group flex items-center rounded-md p-1 text-sm font-medium text-gray-900 hover:bg-gray-100 data-[state=open]:bg-gray-100 data-[state=open]:bg-gray-400/10 hover:dark:bg-gray-400/10"
+        )}
+      >
+        <span
+          className="flex size-7 shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white text-xs text-gray-700 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-300"
+          aria-hidden="true"
+        >
+          ES
+        </span>
+      </Button>
+    </DropdownUserProfile>
+  );
+};

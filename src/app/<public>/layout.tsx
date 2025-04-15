@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "next-themes";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -174,10 +175,18 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${openSans.variable} antialiased bg-gray-50 text-gray-800`}
+        className={`${openSans.variable} antialiased bg-gray-50 text-gray-800 min-h-screen`}
+        suppressHydrationWarning
       >
-        {children}
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
