@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import Script from "next/script";
-import "./globals.css";
+import "../globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "next-themes";
 

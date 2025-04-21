@@ -16,7 +16,7 @@ export const metadata = {
   },
 };
 
-export default function Home() {
+export default function Diarista() {
   return (
     <>
       <section
