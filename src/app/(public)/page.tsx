@@ -1,5 +1,6 @@
 import SearchBarWrapper from "@/components/search-bar/SearchBarWrapper";
 import Image from "next/image";
+import ProfessionalSliderWrapper from "@/components/ProfessionalSlider/ProfessionalSliderWrapper";
 
 export const metadata = {
   openGraph: {
@@ -69,56 +70,7 @@ export default function Home() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">Perfis em destaque no CWB Diaristas</h2>
-            
-            <div className="flex overflow-x-auto gap-8 pb-4 px-4">
-              {/* Profile Card 1 */}
-              <div className="flex-shrink-0 w-80 bg-white rounded-lg shadow-md p-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-full overflow-hidden">
-                    <Image src="/assets/imgs/avatar1.jpg" alt="Diarista" width={64} height={64} className="object-cover" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-lg">Maria Silva</h3>
-                    <p className="text-gray-600 text-sm">Bairros: Batel, Centro, Água Verde</p>
-                    <button className="mt-2 bg-secondary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition cursor-pointer">
-                      Mostrar Perfil
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Profile Card 2 */}
-              <div className="flex-shrink-0 w-80 bg-white rounded-lg shadow-md p-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-full overflow-hidden">
-                    <Image src="/assets/imgs/avatar2.jpg" alt="Diarista" width={64} height={64} className="object-cover" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-lg">Joana Santos</h3>
-                    <p className="text-gray-600 text-sm">Bairros: Bigorrilho, Mercês, Cabral</p>
-                    <button className="mt-2 bg-secondary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition">
-                      Mostrar Perfil
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Profile Card 3 */}
-              <div className="flex-shrink-0 w-80 bg-white rounded-lg shadow-md p-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-full overflow-hidden">
-                    <Image src="/assets/imgs/avatar3.jpg" alt="Diarista" width={64} height={64} className="object-cover" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-lg">Ana Oliveira</h3>
-                    <p className="text-gray-600 text-sm">Bairros: Cristo Rei, Portão, Santa Felicidade</p>
-                    <button className="mt-2 bg-secondary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition">
-                      Mostrar Perfil
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ProfessionalSliderWrapper />
           </div>
         </section>
 

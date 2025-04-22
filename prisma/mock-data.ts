@@ -19,6 +19,35 @@ const professionalUsers = [
       rating: 4.8,
       price: 80.00,
       verificationStatus: VerificationStatus.VERIFIED,
+      serviceZones: [
+        {
+          neighborhood: 'Centro',
+          city: 'Curitiba',
+          state: 'PR'
+        },
+        {
+          neighborhood: 'Batel',
+          city: 'Curitiba',
+          state: 'PR'
+        }
+      ],
+      availabilitySchedule: [
+        {
+          dayOfWeek: 'Segunda',
+          startTime: '08:00',
+          endTime: '18:00'
+        },
+        {
+          dayOfWeek: 'Quarta',
+          startTime: '08:00',
+          endTime: '18:00'
+        },
+        {
+          dayOfWeek: 'Sexta',
+          startTime: '08:00',
+          endTime: '18:00'
+        }
+      ],
       addresses: [{
         street: 'Rua das Flores',
         number: '123',
@@ -45,6 +74,35 @@ const professionalUsers = [
       rating: 4.9,
       price: 120.00,
       verificationStatus: VerificationStatus.VERIFIED,
+      serviceZones: [
+        {
+          neighborhood: 'Batel',
+          city: 'Curitiba',
+          state: 'PR'
+        },
+        {
+          neighborhood: 'Água Verde',
+          city: 'Curitiba',
+          state: 'PR'
+        }
+      ],
+      availabilitySchedule: [
+        {
+          dayOfWeek: 'Terça',
+          startTime: '09:00',
+          endTime: '17:00'
+        },
+        {
+          dayOfWeek: 'Quinta',
+          startTime: '09:00',
+          endTime: '17:00'
+        },
+        {
+          dayOfWeek: 'Sábado',
+          startTime: '08:00',
+          endTime: '14:00'
+        }
+      ],
       addresses: [{
         street: 'Avenida Brasil',
         number: '456',
@@ -71,6 +129,35 @@ const professionalUsers = [
       rating: 4.7,
       price: 150.00,
       verificationStatus: VerificationStatus.VERIFIED,
+      serviceZones: [
+        {
+          neighborhood: 'Água Verde',
+          city: 'Curitiba',
+          state: 'PR'
+        },
+        {
+          neighborhood: 'Boa Vista',
+          city: 'Curitiba',
+          state: 'PR'
+        }
+      ],
+      availabilitySchedule: [
+        {
+          dayOfWeek: 'Segunda',
+          startTime: '07:00',
+          endTime: '19:00'
+        },
+        {
+          dayOfWeek: 'Quarta',
+          startTime: '07:00',
+          endTime: '19:00'
+        },
+        {
+          dayOfWeek: 'Sexta',
+          startTime: '07:00',
+          endTime: '19:00'
+        }
+      ],
       addresses: [{
         street: 'Rua das Palmeiras',
         number: '789',
@@ -96,6 +183,35 @@ const professionalUsers = [
       rating: 4.6,
       price: 200.00,
       verificationStatus: VerificationStatus.PENDING,
+      serviceZones: [
+        {
+          neighborhood: 'Boa Vista',
+          city: 'Curitiba',
+          state: 'PR'
+        },
+        {
+          neighborhood: 'Cristo Rei',
+          city: 'Curitiba',
+          state: 'PR'
+        }
+      ],
+      availabilitySchedule: [
+        {
+          dayOfWeek: 'Terça',
+          startTime: '08:00',
+          endTime: '18:00'
+        },
+        {
+          dayOfWeek: 'Quinta',
+          startTime: '08:00',
+          endTime: '18:00'
+        },
+        {
+          dayOfWeek: 'Sábado',
+          startTime: '08:00',
+          endTime: '14:00'
+        }
+      ],
       addresses: [{
         street: 'Rua das Acácias',
         number: '321',
@@ -122,6 +238,35 @@ const professionalUsers = [
       rating: 4.9,
       price: 180.00,
       verificationStatus: VerificationStatus.VERIFIED,
+      serviceZones: [
+        {
+          neighborhood: 'Cristo Rei',
+          city: 'Curitiba',
+          state: 'PR'
+        },
+        {
+          neighborhood: 'Santa Felicidade',
+          city: 'Curitiba',
+          state: 'PR'
+        }
+      ],
+      availabilitySchedule: [
+        {
+          dayOfWeek: 'Segunda',
+          startTime: '06:00',
+          endTime: '18:00'
+        },
+        {
+          dayOfWeek: 'Quarta',
+          startTime: '06:00',
+          endTime: '18:00'
+        },
+        {
+          dayOfWeek: 'Sexta',
+          startTime: '06:00',
+          endTime: '18:00'
+        }
+      ],
       addresses: [{
         street: 'Rua das Orquídeas',
         number: '654',
@@ -147,6 +292,35 @@ const professionalUsers = [
       rating: 4.5,
       price: 250.00,
       verificationStatus: VerificationStatus.PENDING,
+      serviceZones: [
+        {
+          neighborhood: 'Santa Felicidade',
+          city: 'Curitiba',
+          state: 'PR'
+        },
+        {
+          neighborhood: 'Mercês',
+          city: 'Curitiba',
+          state: 'PR'
+        }
+      ],
+      availabilitySchedule: [
+        {
+          dayOfWeek: 'Terça',
+          startTime: '07:00',
+          endTime: '17:00'
+        },
+        {
+          dayOfWeek: 'Quinta',
+          startTime: '07:00',
+          endTime: '17:00'
+        },
+        {
+          dayOfWeek: 'Sábado',
+          startTime: '07:00',
+          endTime: '13:00'
+        }
+      ],
       addresses: [{
         street: 'Rua das Violetas',
         number: '987',
@@ -173,6 +347,35 @@ const professionalUsers = [
       rating: 4.8,
       price: 90.00,
       verificationStatus: VerificationStatus.VERIFIED,
+      serviceZones: [
+        {
+          neighborhood: 'Mercês',
+          city: 'Curitiba',
+          state: 'PR'
+        },
+        {
+          neighborhood: 'Bigorrilho',
+          city: 'Curitiba',
+          state: 'PR'
+        }
+      ],
+      availabilitySchedule: [
+        {
+          dayOfWeek: 'Segunda',
+          startTime: '08:00',
+          endTime: '18:00'
+        },
+        {
+          dayOfWeek: 'Quarta',
+          startTime: '08:00',
+          endTime: '18:00'
+        },
+        {
+          dayOfWeek: 'Sexta',
+          startTime: '08:00',
+          endTime: '18:00'
+        }
+      ],
       addresses: [{
         street: 'Rua das Margaridas',
         number: '147',
@@ -198,6 +401,35 @@ const professionalUsers = [
       rating: 4.7,
       price: 300.00,
       verificationStatus: VerificationStatus.PENDING,
+      serviceZones: [
+        {
+          neighborhood: 'Bigorrilho',
+          city: 'Curitiba',
+          state: 'PR'
+        },
+        {
+          neighborhood: 'Batel',
+          city: 'Curitiba',
+          state: 'PR'
+        }
+      ],
+      availabilitySchedule: [
+        {
+          dayOfWeek: 'Terça',
+          startTime: '09:00',
+          endTime: '17:00'
+        },
+        {
+          dayOfWeek: 'Quinta',
+          startTime: '09:00',
+          endTime: '17:00'
+        },
+        {
+          dayOfWeek: 'Sábado',
+          startTime: '08:00',
+          endTime: '14:00'
+        }
+      ],
       addresses: [{
         street: 'Rua das Tulipas',
         number: '258',
@@ -224,6 +456,35 @@ const professionalUsers = [
       rating: 4.9,
       price: 160.00,
       verificationStatus: VerificationStatus.VERIFIED,
+      serviceZones: [
+        {
+          neighborhood: 'Batel',
+          city: 'Curitiba',
+          state: 'PR'
+        },
+        {
+          neighborhood: 'Centro',
+          city: 'Curitiba',
+          state: 'PR'
+        }
+      ],
+      availabilitySchedule: [
+        {
+          dayOfWeek: 'Segunda',
+          startTime: '07:00',
+          endTime: '19:00'
+        },
+        {
+          dayOfWeek: 'Quarta',
+          startTime: '07:00',
+          endTime: '19:00'
+        },
+        {
+          dayOfWeek: 'Sexta',
+          startTime: '07:00',
+          endTime: '19:00'
+        }
+      ],
       addresses: [{
         street: 'Rua das Rosas',
         number: '369',
@@ -249,14 +510,43 @@ const professionalUsers = [
       rating: 4.6,
       price: 220.00,
       verificationStatus: VerificationStatus.PENDING,
+      serviceZones: [
+        {
+          neighborhood: 'Centro',
+          city: 'Curitiba',
+          state: 'PR'
+        },
+        {
+          neighborhood: 'Água Verde',
+          city: 'Curitiba',
+          state: 'PR'
+        }
+      ],
+      availabilitySchedule: [
+        {
+          dayOfWeek: 'Terça',
+          startTime: '08:00',
+          endTime: '18:00'
+        },
+        {
+          dayOfWeek: 'Quinta',
+          startTime: '08:00',
+          endTime: '18:00'
+        },
+        {
+          dayOfWeek: 'Sábado',
+          startTime: '08:00',
+          endTime: '14:00'
+        }
+      ],
       addresses: [{
-        street: 'Rua das Hortênsias',
-        number: '741',
+        street: 'Rua das Tulipas',
+        number: '258',
         complement: 'Casa',
-        neighborhood: 'Cabral',
+        neighborhood: 'Bigorrilho',
         city: 'Curitiba',
         state: 'PR',
-        zipCode: '80035-000'
+        zipCode: '80730-000'
       }]
     }
   }
@@ -264,8 +554,14 @@ const professionalUsers = [
 
 async function cleanup() {
   try {
+    // Delete all UserServiceZones first
+    await prisma.userServiceZones.deleteMany();
     // Delete all addresses
     await prisma.address.deleteMany();
+    // Delete all availability schedules
+    await prisma.schedule.deleteMany();
+    // Delete all service zones
+    await prisma.serviceZones.deleteMany();
     // Delete all userInfos
     await prisma.userInfo.deleteMany();
     // Delete all users
@@ -279,8 +575,24 @@ async function cleanup() {
 
 async function seed() {
   try {
+    // First create all service zones
+    const serviceZones = await Promise.all(
+      professionalUsers.flatMap(user => 
+        user.userInfo.serviceZones.map(async (zone) => {
+          return prisma.serviceZones.create({
+            data: {
+              neighborhood: zone.neighborhood,
+              city: zone.city,
+              state: zone.state
+            }
+          });
+        })
+      )
+    );
+
+    // Then create users with their userInfo
     for (const user of professionalUsers) {
-      await prisma.user.create({
+      const createdUser = await prisma.user.create({
         data: {
           email: user.email,
           password: user.password,
@@ -296,14 +608,44 @@ async function seed() {
               skills: user.userInfo.skills,
               rating: user.userInfo.rating,
               price: user.userInfo.price,
-              verificationStatus: user.userInfo.verificationStatus,
-              addresses: {
-                create: user.userInfo.addresses
-              }
+              verificationStatus: user.userInfo.verificationStatus
             }
           }
+        },
+        include: {
+          userInfo: true
         }
       });
+
+      // Create availability schedules
+      await prisma.schedule.createMany({
+        data: user.userInfo.availabilitySchedule.map(schedule => ({
+          dayOfWeek: schedule.dayOfWeek,
+          startTime: schedule.startTime,
+          endTime: schedule.endTime,
+          userInfoId: createdUser.userInfo.id
+        }))
+      });
+
+      // Create UserServiceZones relationships
+      await Promise.all(
+        user.userInfo.serviceZones.map(async (zone) => {
+          const serviceZone = serviceZones.find(
+            sz => sz.neighborhood === zone.neighborhood && 
+                 sz.city === zone.city && 
+                 sz.state === zone.state
+          );
+          
+          if (serviceZone) {
+            await prisma.userServiceZones.create({
+              data: {
+                userInfoId: createdUser.userInfo.id,
+                serviceZoneId: serviceZone.id
+              }
+            });
+          }
+        })
+      );
     }
     console.log('Seeding completed successfully');
   } catch (error) {

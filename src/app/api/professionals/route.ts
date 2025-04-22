@@ -4,6 +4,7 @@ import {
   createProfessional,
   getAllProfessionals,
   getProfessionalByEmail,
+  searchProfessionals,
 } from "@/services/professionalService";
 
 export async function POST(request: Request) {
@@ -38,8 +39,17 @@ export async function POST(request: Request) {
   }
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const neighborhood = searchParams.get('neighborhood');
+    const days = searchParams.get('days')?.split(',');
+
+    if (neighborhood && days) {
+      const professionals = await searchProfessionals(neighborhood, days);
+      return NextResponse.json(professionals);
+    }
+
     const professionals = await getAllProfessionals();
     return NextResponse.json(professionals);
   } catch (error) {

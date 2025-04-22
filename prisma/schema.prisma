@@ -43,7 +43,7 @@ model ServiceZones {
   neighborhood  String 
   city          String
   state         String
-  professionals UserServiceZones[]  // Relation through join model
+  professionals UserServiceZones[]
 }
 
 model UserInfo {
@@ -60,7 +60,7 @@ model UserInfo {
   bio               String?
   languages         String[]
   skills            String[]
-  serviceZones      UserServiceZones[]  // Relation through join model
+  serviceZones      UserServiceZones[]
   availabilitySchedule Schedule[]
   verificationStatus VerificationStatus @default(PENDING)
   createdAt         DateTime @default(now())
