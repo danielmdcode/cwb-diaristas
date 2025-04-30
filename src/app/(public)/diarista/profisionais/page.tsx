@@ -1,5 +1,5 @@
+import { Role } from '@/app/types'
 import { prisma } from '@/lib/prisma'
-import { Role } from '../types'
 
 export default async function ProfessionalsPage() {
   const professionals = await prisma.user.findMany({

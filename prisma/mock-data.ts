@@ -14,9 +14,9 @@ const professionalUsers = [
       avatar: 'https://randomuser.me/api/portraits/women/1.jpg',
       phoneNumber: '(41) 98765-4321',
       bio: 'Profissional dedicada com 5 anos de experiência em limpeza residencial.',
+      experience: '5 anos de experiência em limpeza residencial, especializada em organização e higienização de ambientes.',
       languages: ['Português', 'Inglês'],
       skills: ['Limpeza Residencial', 'Organização', 'Lavanderia'],
-      rating: 4.8,
       price: 80.00,
       verificationStatus: VerificationStatus.VERIFIED,
       serviceZones: [
@@ -56,7 +56,19 @@ const professionalUsers = [
         city: 'Curitiba',
         state: 'PR',
         zipCode: '80010-000'
-      }]
+      }],
+      ratings: [
+        {
+          rating: 5.0,
+          comment: 'Excelente profissional! Muito atenciosa e caprichosa.',
+          isVerified: true
+        },
+        {
+          rating: 4.5,
+          comment: 'Ótimo trabalho, mas chegou um pouco atrasada.',
+          isVerified: true
+        }
+      ]
     }
   },
   {
@@ -69,9 +81,9 @@ const professionalUsers = [
       avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
       phoneNumber: '(41) 98765-4322',
       bio: 'Especialista em jardinagem e manutenção de áreas verdes.',
+      experience: '8 anos de experiência em jardinagem, com especialização em paisagismo e manutenção de jardins.',
       languages: ['Português'],
       skills: ['Jardinagem', 'Poda de Plantas', 'Manutenção de Jardins'],
-      rating: 4.9,
       price: 120.00,
       verificationStatus: VerificationStatus.VERIFIED,
       serviceZones: [
@@ -111,7 +123,19 @@ const professionalUsers = [
         city: 'Curitiba',
         state: 'PR',
         zipCode: '80240-000'
-      }]
+      }],
+      ratings: [
+        {
+          rating: 5.0,
+          comment: 'Profissional excepcional! Transformou completamente meu jardim.',
+          isVerified: true
+        },
+        {
+          rating: 4.8,
+          comment: 'Muito competente e organizado.',
+          isVerified: true
+        }
+      ]
     }
   },
   {
@@ -126,7 +150,6 @@ const professionalUsers = [
       bio: 'Profissional especializada em limpeza pós-obra e reformas.',
       languages: ['Português', 'Espanhol'],
       skills: ['Limpeza Pós-Obra', 'Limpeza Pesada', 'Organização'],
-      rating: 4.7,
       price: 150.00,
       verificationStatus: VerificationStatus.VERIFIED,
       serviceZones: [
@@ -180,7 +203,6 @@ const professionalUsers = [
       bio: 'Especialista em limpeza de carpetes e estofados.',
       languages: ['Português'],
       skills: ['Limpeza de Carpetes', 'Limpeza de Estofados', 'Higienização'],
-      rating: 4.6,
       price: 200.00,
       verificationStatus: VerificationStatus.PENDING,
       serviceZones: [
@@ -235,7 +257,6 @@ const professionalUsers = [
       bio: 'Profissional com experiência em limpeza comercial e industrial.',
       languages: ['Português', 'Inglês'],
       skills: ['Limpeza Comercial', 'Limpeza Industrial', 'Organização'],
-      rating: 4.9,
       price: 180.00,
       verificationStatus: VerificationStatus.VERIFIED,
       serviceZones: [
@@ -289,7 +310,6 @@ const professionalUsers = [
       bio: 'Especialista em limpeza de piscinas e áreas externas.',
       languages: ['Português'],
       skills: ['Limpeza de Piscinas', 'Manutenção de Áreas Externas', 'Jardinagem'],
-      rating: 4.5,
       price: 250.00,
       verificationStatus: VerificationStatus.PENDING,
       serviceZones: [
@@ -344,7 +364,6 @@ const professionalUsers = [
       bio: 'Profissional especializada em organização e limpeza de residências.',
       languages: ['Português', 'Inglês', 'Espanhol'],
       skills: ['Organização Residencial', 'Limpeza Residencial', 'Lavanderia'],
-      rating: 4.8,
       price: 90.00,
       verificationStatus: VerificationStatus.VERIFIED,
       serviceZones: [
@@ -398,7 +417,6 @@ const professionalUsers = [
       bio: 'Especialista em limpeza de vidros e fachadas.',
       languages: ['Português'],
       skills: ['Limpeza de Vidros', 'Limpeza de Fachadas', 'Trabalho em Altura'],
-      rating: 4.7,
       price: 300.00,
       verificationStatus: VerificationStatus.PENDING,
       serviceZones: [
@@ -453,7 +471,6 @@ const professionalUsers = [
       bio: 'Profissional com experiência em limpeza de condomínios.',
       languages: ['Português', 'Inglês'],
       skills: ['Limpeza de Condomínios', 'Organização', 'Lavanderia'],
-      rating: 4.9,
       price: 160.00,
       verificationStatus: VerificationStatus.VERIFIED,
       serviceZones: [
@@ -507,7 +524,6 @@ const professionalUsers = [
       bio: 'Especialista em limpeza de veículos e estacionamentos.',
       languages: ['Português'],
       skills: ['Limpeza de Veículos', 'Limpeza de Estacionamentos', 'Detalhamento'],
-      rating: 4.6,
       price: 220.00,
       verificationStatus: VerificationStatus.PENDING,
       serviceZones: [
@@ -554,7 +570,9 @@ const professionalUsers = [
 
 async function cleanup() {
   try {
-    // Delete all UserServiceZones first
+    // Delete all ratings first
+    await prisma.rating.deleteMany();
+    // Delete all UserServiceZones
     await prisma.userServiceZones.deleteMany();
     // Delete all addresses
     await prisma.address.deleteMany();
@@ -604,6 +622,7 @@ async function seed() {
               avatar: user.userInfo.avatar,
               phoneNumber: user.userInfo.phoneNumber,
               bio: user.userInfo.bio,
+              experience: user.userInfo.experience,
               languages: user.userInfo.languages,
               skills: user.userInfo.skills,
               rating: user.userInfo.rating,
@@ -646,6 +665,48 @@ async function seed() {
           }
         })
       );
+
+      // Create ratings
+      if (user.userInfo.ratings) {
+        // Primeiro, vamos criar um usuário cliente para fazer as avaliações
+        const clientUser = await prisma.user.create({
+          data: {
+            email: `client${user.email}`,
+            password: 'hashedPassword123',
+            nome: `Cliente de ${user.nome}`,
+            role: Role.USER,
+            status: UserStatus.ACTIVE,
+            userInfo: {
+              create: {
+                avatar: 'https://randomuser.me/api/portraits/lego/1.jpg',
+                phoneNumber: '(41) 99999-9999',
+                bio: 'Cliente satisfeito',
+                languages: ['Português'],
+                skills: [],
+                price: 0,
+                verificationStatus: VerificationStatus.VERIFIED
+              }
+            }
+          },
+          include: {
+            userInfo: true
+          }
+        });
+
+        await Promise.all(
+          user.userInfo.ratings.map(async (rating) => {
+            await prisma.rating.create({
+              data: {
+                rating: rating.rating,
+                comment: rating.comment,
+                isVerified: rating.isVerified,
+                userInfoId: createdUser.userInfo.id, // ID do profissional sendo avaliado
+                ratedById: clientUser.id // ID do cliente que fez a avaliação
+              }
+            });
+          })
+        );
+      }
     }
     console.log('Seeding completed successfully');
   } catch (error) {

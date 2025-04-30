@@ -31,6 +31,7 @@ export type UserInfo = {
   skills: string[];
   price: number;
   bio: string;
+  experience?: string;
   rating: number;
   serviceZones: {
     id: string;
@@ -45,7 +46,7 @@ export type UserProfessional = {
   telefone: string;
   email: string;
   cidade: string;
-  experiencia: string;
+  experience: string;
   createdAt: Date;
   userInfo: UserInfo;
 };
@@ -168,15 +169,13 @@ export async function getLastProfessionals(limit: number = 6): Promise<UserProfe
       return isIncluded;
     });
 
-    console.log('userZones', userZones);
-
     return {
       _id: professional._id?.toString(),
       nome: professional.nome,
       telefone: professional.telefone,
       email: professional.email,
       cidade: professional.cidade,
-      experiencia: professional.experiencia,
+      experience: professional.experience,
       createdAt: professional.createdAt,
       userInfo: {
         _id: userInfo?._id?.toString(),
@@ -193,6 +192,7 @@ export async function getLastProfessionals(limit: number = 6): Promise<UserProfe
         skills: userInfo?.skills || [],
         price: userInfo?.price || 0,
         bio: userInfo?.bio || '',
+        experience: userInfo?.experience || '',
         rating: userInfo?.rating || 0,
         serviceZones: userZones.map(z => ({
           id: z._id.toString(),

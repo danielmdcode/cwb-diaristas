@@ -4,4 +4,7 @@ export const ENDPOINTS = {
         ADD: "/admin/usuarios/novo",
         EDIT: (id: string) => `/admin/usuarios/${id}/editar`,
     },
+    PROFESSIONALS: {
+        ID: "/professionals"
+    }
 }

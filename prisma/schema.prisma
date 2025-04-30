@@ -34,6 +34,7 @@ model User {
   role      Role     @default(USER)
   status    UserStatus @default(ACTIVE)
   userInfo  UserInfo?
+  ratings   Rating[] @relation("UserRatings")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -55,14 +56,15 @@ model UserInfo {
   accounts          Account[]
   phoneNumber       String?
   documents         Document[]
-  rating            Float    @default(0)
   price             Float    @default(0)
   bio               String?
+  experience        String?  @db.String
   languages         String[]
   skills            String[]
   serviceZones      UserServiceZones[]
   availabilitySchedule Schedule[]
   verificationStatus VerificationStatus @default(PENDING)
+  ratings           Rating[]
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }
@@ -122,4 +124,17 @@ enum VerificationStatus {
   PENDING
   VERIFIED
   REJECTED
+}
+
+model Rating {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  rating      Float
+  comment     String?
+  isVerified  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  userInfoId  String   @db.ObjectId
+  userInfo    UserInfo @relation(fields: [userInfoId], references: [id])
+  ratedById   String   @db.ObjectId
+  ratedBy     User     @relation("UserRatings", fields: [ratedById], references: [id])
 }
