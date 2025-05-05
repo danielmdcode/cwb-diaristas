@@ -1,46 +1,69 @@
-'use client';
-
 import { User } from "@/app/types";
 import DatePicker from 'react-date-picker';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 
 import './CalendarDisplay.css';
 
-type CalendarDisplayProps = {
-    professionalDetail: User;
-    onTimeSelect?: (time: string) => void;
-}
-
 type ValuePiece = Date | null;
-
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-export default function CalendarDisplay({ professionalDetail, onTimeSelect }: CalendarDisplayProps) {
-    const [value, onChange] = useState<Value>(new Date());
+type CalendarDisplayProps = {
+    professionalDetail: User;
+    onTimeSelect: (time: Value) => void;
+}
 
-    // Função para desabilitar dias específicos
+export default function CalendarDisplay({ professionalDetail, onTimeSelect }: CalendarDisplayProps) {
+    const minDate = new Date();
+    minDate.setDate(minDate.getDate() + 7);
+
+    const [value, onChange] = useState<Value>(minDate);
+
+    const availableDates = professionalDetail.userInfo.availabilitySchedule;
+
+    const dayMapping: { [key: string]: number } = {
+        'Domingo': 0,
+        'Segunda': 1,
+        'Terça': 2,
+        'Quarta': 3,
+        'Quinta': 4,
+        'Sexta': 5,
+        'Sábado': 6
+    };
+
+    const availableDays = availableDates.map(schedule => dayMapping[schedule.dayOfWeek]);
+
     const tileDisabled = ({ date, view }: { date: Date; view: string }) => {
-        // Apenas desabilita dias na visualização mensal
         if (view === 'month') {
-            // Exemplo: desabilita domingos (0) e sábados (6)
             const day = date.getDay();
-            return day === 0 || day === 6;
+            return !availableDays.includes(day);
         }
         return false;
     };
 
+    useEffect(() => {
+        if (value) {
+            onTimeSelect(value);
+        }
+    }, [value]);
+
     return (
         <div className="p-4">
-            <h4 className="text-md font-bold mb-4">Selecione uma data</h4>
-            <DatePicker 
-                onChange={onChange} 
-                value={value} 
-                locale="pt-BR" 
+            <div className="flex flex-col gap-1 mb-4">
+                <h4 className="text-md font-bold">Selecione uma data</h4>
+                <small className="text-sm text-gray-500">
+                    *Selecione uma data a partir de 7 dias a partir de hoje
+                </small>
+            </div>
+            <DatePicker
+                onChange={onChange}
+                value={value}
+                locale="pt-BR"
                 className="w-full"
-                minDate={new Date()}
+                minDate={minDate}
+                format="dd/MM/yyyy"
                 calendarProps={{
                     tileDisabled: tileDisabled
                 }}

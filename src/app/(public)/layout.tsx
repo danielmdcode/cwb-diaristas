@@ -4,6 +4,7 @@ import Script from "next/script";
 import "../globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "next-themes";
+import HeaderWrapper from "@/components/Header/HeaderWrapper";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -178,15 +179,20 @@ export default function RootLayout({
         className={`${openSans.variable} antialiased bg-gray-50 text-gray-800 min-h-screen`}
         suppressHydrationWarning
       >
+        <HeaderWrapper />
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <main>{children}</main>
           <Toaster />
         </ThemeProvider>
+        <footer className="bg-gray-800 text-white text-center py-10 mt-12 bg-[url(/assets/imgs/footer_bg.jpg)] bg-cover bg-center">
+          &copy; 2025 CWB Diaristas - Todos os direitos reservados
+        </footer>
       </body>
     </html>
   );

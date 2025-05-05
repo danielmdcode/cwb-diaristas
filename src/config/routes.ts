@@ -1,4 +1,5 @@
 export const ENDPOINTS = {
+    HOME: "/",
     USERS: {
         LIST: "/admin/usuarios",
         ADD: "/admin/usuarios/novo",
@@ -6,5 +7,6 @@ export const ENDPOINTS = {
     },
     PROFESSIONALS: {
         ID: "/professionals"
-    }
+    },
+    CHECKOUT: "/finalizar-agendamento"
 }
