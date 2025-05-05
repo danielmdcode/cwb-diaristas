@@ -19,8 +19,6 @@ export const useRatings = ({ professionalDetail }: UseRatingsProps): RatingsStat
         const ratings = professionalDetail.userInfo.ratings || [];
         const average = calculateAverageRating(ratings as unknown as Rating[]);
 
-        console.log('ratings', ratings);
-        console.log('average', average);
         return {
             average,
             formattedAverage: formatRating(average),

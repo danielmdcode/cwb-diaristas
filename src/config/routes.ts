@@ -8,5 +8,7 @@ export const ENDPOINTS = {
     PROFESSIONALS: {
         ID: "/professionals"
     },
-    CHECKOUT: "/finalizar-agendamento"
+    CHECKOUT: "/finalizar-agendamento",
+    THANK_YOU: "/agendamento-finalizado",
+    MY_APPOINTMENTS: "/meus-agendamentos"
 }

@@ -8,10 +8,14 @@ import { format } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import { useRouter } from "next/navigation";
 import { ENDPOINTS } from "@/config/routes";
+import { useState } from "react";
+import { useToastStore } from "@/stores/use-toast-store";
 
 export default function CheckoutPage() {
   const router = useRouter();
   const { professional, selectedTime, showRecurrence, recurrenceInterval } = useScheduleStore();
+  const [isLoading, setIsLoading] = useState(false);
+  const addToast = useToastStore((state) => state.addToast);
 
   if (!professional || !selectedTime) {
     return (
@@ -43,6 +47,50 @@ export default function CheckoutPage() {
     if (!professional.userInfo?.ratings?.length) return 5.0;
     const sum = professional.userInfo.ratings.reduce((acc, curr) => acc + curr.rating, 0);
     return (sum / professional.userInfo.ratings.length).toFixed(1);
+  };
+
+  const handleFinishAppointment = async () => {
+    try {
+      setIsLoading(true);
+
+      // TODO: Get the user's selected address
+      const addressId = "default_address_id"; // This should come from user's selected address
+
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          professionalId: professional.id,
+          serviceDate: selectedTime,
+          totalAmount: professional.userInfo?.price || 0,
+          addressId,
+          description: `Agendamento ${getRecurrenceText().toLowerCase()}`
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao criar agendamento");
+      }
+
+      addToast({
+        title: "Sucesso",
+        description: "Agendamento criado com sucesso!",
+        type: "default",
+      });
+
+      router.push(ENDPOINTS.THANK_YOU);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Erro ao criar agendamento. Por favor, tente novamente.";
+      addToast({
+        title: "Erro",
+        description: errorMessage,
+        type: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -104,8 +152,14 @@ export default function CheckoutPage() {
             </div>
 
             <div className="mt-8 space-y-4">
-              <Button className="w-full" variant={"secondary"} size="lg">
-                Finalizar Agendamento
+              <Button 
+                className="w-full" 
+                variant={"secondary"} 
+                size="lg"
+                onClick={handleFinishAppointment}
+                disabled={isLoading}
+              >
+                {isLoading ? "Processando..." : "Finalizar Agendamento"}
               </Button>
             </div>
 
